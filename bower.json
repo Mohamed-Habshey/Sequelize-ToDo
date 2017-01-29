@@ -1,12 +1,19 @@
 {
-  "name": "sequelize-test",
-  "version": "0.0.0",
+  "name": "sequelize-todo",
+  "version": "0.1.0",
   "main": "app.js",
   "license": "MIT",
   "dependencies": {
-    "angular": "~1.3.13",
-    "bootstrap": "~3.3.2",
-    "jquery": "~2.1.3",
-    "angular-route": "~1.3.13"
-  }
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.4.2",
+    "animate.css": "^3.5.2",
+    "angular-bootstrap": "^1.3.3",
+    "bootstrap": "^3.3.7"
+  },
+  "resolutions": {
+    "angular": "^1.5.8"
+  },
+  "contributors": [
+    "Mohamed Habashy  (https://github.com/Mohamed-Habshey)"
+  ]
 }
