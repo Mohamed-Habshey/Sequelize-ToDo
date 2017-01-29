@@ -6,8 +6,8 @@ angular.module('mainApp')
     $scope.username = '';
 
     $scope.getUsers = function() {
-      $http.get('/api/users').success(function(data) {
-        $scope.users = data;
+      $http.get('/api/users').then(function(data) {
+        $scope.users = data.data;
       });
     };
 
@@ -15,7 +15,7 @@ angular.module('mainApp')
 
     $scope.createUser = function() {
       $http.post('/api/users', {'username': $scope.username})
-      .success(function() {
+      .then(function() {
         $scope.username = '';
         $scope.getUsers();
       });
@@ -23,28 +23,28 @@ angular.module('mainApp')
 
     $scope.deleteUser = function(user) {
       $http.delete('/api/users/' + user.id)
-      .success(function() {
+      .then(function() {
         $scope.getUsers();
       });
     };
 
     $scope.createTask = function(user) {
       $http.post('/api/users/' + user.id + '/tasks', {'title': user.title})
-      .success(function() {
+      .then(function() {
         $scope.getUsers();
       });
     };
 
     $scope.solveTask = function(user, task) {
       $http.put('/api/users/' + user.id + '/tasks/' + task.id, {'isDone': true})
-      .success(function() {
+      .then(function() {
         $scope.getUsers();
       });
     };
 
     $scope.deleteTask = function(user, task) {
       $http.delete('/api/users/' + user.id + '/tasks/' + task.id)
-      .success(function() {
+      .then(function() {
         $scope.getUsers();
       });
     };
