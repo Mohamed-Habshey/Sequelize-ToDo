@@ -24,7 +24,7 @@ exports.create = function(req, res) {
 
 //delete user by id
 exports.delete = function(req, res) {
-  models.User.find(req.params.id).then(function(user) {
+  models.User.findById (req.params.id).then(function(user) {
     user.destroy().then(function() {
       res.status(200).end();
     });
@@ -33,7 +33,7 @@ exports.delete = function(req, res) {
 
 //create task for user
 exports.createTask = function(req, res) {
-  models.User.find(req.params.id).then(function(user) {
+  models.User.findById (req.params.id).then(function(user) {
     models.Task.create({title: req.body.title}).then(function(task) {
       user.addTask(task).then(function() {
         res.redirect('/');
@@ -44,8 +44,8 @@ exports.createTask = function(req, res) {
 
 //set task as done or not done
 exports.setDone = function(req, res) {
-  models.User.find(req.params.userid).then(function(user) {
-    user.getTasks({where: 'id='+req.params.taskid}).then(function(tasks) {
+  models.User.findById (req.params.userid).then(function(user) {
+    user.getTasks({where: ['id='+req.params.taskid]}).then(function(tasks) {
       tasks[0].updateAttributes({
         isDone: req.body.isDone
       }).then(function() {
@@ -57,8 +57,8 @@ exports.setDone = function(req, res) {
 
 //delete task
 exports.deleteTask = function(req, res) {
-  models.User.find(req.params.userid).then(function(user) {
-    user.getTasks({where: 'id='+req.params.taskid}).then(function(tasks) {
+  models.User.findById (req.params.userid).then(function(user) {
+    user.getTasks({where: ['id='+req.params.taskid]}).then(function(tasks) {
       tasks[0].destroy().then(function() {
         res.status(200).end();
       });
