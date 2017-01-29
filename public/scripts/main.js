@@ -1,17 +1,19 @@
 'use strict';
 
 angular.module('mainApp', [
-    'ngRoute'
+      'ui.router',
+      'ui.bootstrap'
 ])
-  .config(function($routeProvider, $locationProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state('home', {
+        url:'/',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
+        
       })
-      .otherwise({
-        redirectTo: '/'
-      });
+    
 
-    $locationProvider.html5Mode(true);
+ // if none of the above states are matched, use this as the fallback
+             $urlRouterProvider.otherwise('/');
   });
