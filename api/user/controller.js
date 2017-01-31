@@ -48,11 +48,11 @@ exports.createTask = function (req, res) {
         .then(function (task) {
           return user.addTask(task, { transaction: t });
         })
-        .then(function () {
-          return models.Task.create({ title: req.body.title }, { transaction: t });
-        }).then(function (task) {
-          return user.addTask(task, { transaction: t });
-        });
+        // .then(function () {
+        //   return models.Task.create({ title: req.body.title }, { transaction: t });
+        // }).then(function (task) {
+        //   return user.addTask(task, { transaction: t });
+        // });
 
     }).then(function (result) {
       // Transaction has been committed
